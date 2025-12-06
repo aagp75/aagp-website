@@ -1,0 +1,80 @@
+# Import arcpy module
+import arcpy
+from arcpy import env
+import os
+# Goes through a database and unregisters datasets for versioning, can be used to register datasets with some modification
+arcpy.env.workspace = r"C:\to_some_database_or_database_connection.sde"
+
+datasets = arcpy.ListDatasets()
+features = arcpy.ListFeatureClasses()
+tables = arcpy.ListTables()
+
+for item in datasets:
+    try:
+        print(item)
+        entgisdb_GISDBDO_LandUseOperations = os.path.join(arcpy.env.workspace, item)
+        entgisdb_GISDBDO_LandUseOperations__2_ = item
+        if arcpy.Describe(entgisdb_GISDBDO_LandUseOperations).isVersioned == True:
+            print(item + " is Versioned")
+            print(item +" unregistering as versioned")
+            arcpy.UnregisterAsVersioned_management(entgisdb_GISDBDO_LandUseOperations, "KEEP_EDIT", "NO_COMPRESS_DEFAULT")
+            print(item +" unregistration successful")
+        else:
+            print(item + " Unversioned checked")
+    except:
+        e = sys.exc_info()[1]
+        print(e.args[0])
+for item in features:
+    try:
+        print(item)
+        entgisdb_GISDBDO_LandUseOperations = os.path.join(arcpy.env.workspace, item)
+        entgisdb_GISDBDO_LandUseOperations__2_ = item
+        if arcpy.Describe(entgisdb_GISDBDO_LandUseOperations).isVersioned == True:
+            print(item + " is Versioned")
+            print(item +" unregistering as versioned")
+            arcpy.UnregisterAsVersioned_management(entgisdb_GISDBDO_LandUseOperations, "KEEP_EDIT", "NO_COMPRESS_DEFAULT")
+            print(item +" unregistration successful")
+        else:
+            print(item + " Unversioned checked")
+    except:
+        e = sys.exc_info()[1]
+        print(e.args[0])
+for item in tables:
+    try:
+        print(item)
+        entgisdb_GISDBDO_LandUseOperations = os.path.join(arcpy.env.workspace, item)
+        entgisdb_GISDBDO_LandUseOperations__2_ = item
+        if arcpy.Describe(entgisdb_GISDBDO_LandUseOperations).isVersioned == True:
+            print(item + " is Versioned")
+            print(item +" unregistering as versioned")
+            arcpy.UnregisterAsVersioned_management(entgisdb_GISDBDO_LandUseOperations, "KEEP_EDIT", "NO_COMPRESS_DEFAULT")
+            print(item +" unregistration successful")
+        else:
+            print(item + " Unversioned checked")
+    except:
+        e = sys.exc_info()[1]
+        print(e.args[0])
+
+print("Double checking registered for version status")
+try:
+    for item in tables:
+        print(item)
+        if arcpy.Describe(entgisdb_GISDBDO_LandUseOperations).isVersioned == True:
+            print(item + " is Versioned")
+        else:
+            print(item + " Unversioned checked")
+    for item in tables:
+        print(item)
+        if arcpy.Describe(entgisdb_GISDBDO_LandUseOperations).isVersioned == True:
+            print(item + " is Versioned")
+        else:
+            print(item + " Unversioned checked")
+    for item in tables:
+        print(item)
+        if arcpy.Describe(entgisdb_GISDBDO_LandUseOperations).isVersioned == True:
+            print(item + " is Versioned")
+        else:
+            print(item + " Unversioned checked")
+except:
+    e = sys.exc_info()[1]
+    print(e.args[0])

@@ -1,0 +1,49 @@
+## Import modules
+# This is specifically used to auto download a series of NRCan datasets from their url based on the field in a featureclass, can be modified to loop through a table or use components of an imput to create a url to access
+import arcpy
+import requests
+from os import path
+print('arcpy, requests, and os path imported successfully')
+
+## Set workspace
+arcpy.env.workspace = r'\\ch-fs2\gisphotos\LIDAR Data 2010\NRCan Surfaces 2020'
+ws = arcpy.env.workspace
+print('Workspace Set')
+
+## Define variables and get fields list
+table = "INDEX_utm20_PEI_Charlottetown_2008.shp"
+fieldList = [f.name for f in arcpy.ListFields(table,'ftp_*','String')]
+print('Variables Assigned')
+
+## Check and Create Directories
+for field in fieldList:
+    wsActive = path.join(ws,field)
+    ## If false create path for dataset
+    if path.exists(wsActive) == False:
+        print(field+' Folder does not exist, creating '+field)
+        arcpy.management.CreateFolder(arcpy.env.workspace, field)
+    ## If true skip
+    else:
+        print(field+' exists, skipping')
+print('Download Directories Set')
+
+## Loop through fields and download datasets
+for field in fieldList:
+    rows = arcpy.SearchCursor(table)
+    for row in rows:
+        ## Define the dynamic variables and set file names and directories
+        url = row.getValue(field)
+        Tile = row.getValue('Tile_name')
+        fileName = field + '_' + Tile+'.tiff'
+        wsActive = path.join(ws, field)
+        dest = path.join(wsActive, fileName)
+        wsActive = path.join(ws, field)
+        print(dest)
+        if path.exists(dest)== False:
+            print('Downloading '+fileName)
+            r = requests.get(url, allow_redirects=True)
+            open(dest, 'wb').write(r.content)
+            print('Download of '+fileName+' completed')
+        else:
+            print('File Exists, no files downloaded, skipping')
+print('Complete')

@@ -1,0 +1,16 @@
+import re
+from qgis.core import *
+from qgis.gui import *
+"""Returns the string after the specified occurance of a specific string"""
+@qgsfunction(args="auto", group='Custom')
+def splitString(inString, sString, listIndex, feature, parent):
+    """
+    Searches the input string (inString) with a Search String (sString) and returns the text found in the in String between the the occurance of the search String. An index number can be defined to index forward or backwards(listIndex).
+    <h2>Example usage:</h2>
+    <ul>
+      <li>splitString('How are you today?','o',1) -> 'w are y'</li>
+      <li>splitString('How are you today?','o',2) -> 'u t'</li>
+      <li>splitString('How are you today?','o',3) -> 'day?'</li>
+    </ul>
+    """
+    return re.split(sString, inString)[listIndex]

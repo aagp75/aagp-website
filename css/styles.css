@@ -1,0 +1,698 @@
+@import url(normalize.css);
+
+/*
+---------------------------
+Box Model Resets
+---------------------------
+*/
+/* ensure all page elements use box-sizing:border-box; */
+html {
+  box-sizing: border-box;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+/*remove gaps at edge of viewport*/
+body{    
+    margin:0px;
+}
+
+img{
+	max-width: 100%;
+	height:auto;
+}
+
+main{
+    padding: 1px;
+    flex: 1; /* sticky footer */
+    display: block;
+    width: 100%;
+}
+
+
+/*
+---------------------------
+Header Styling
+---------------------------
+*/
+#top_logo{
+    width: 80px;
+    padding: 5px;
+    margin-bottom: 15px;
+}
+header{
+    padding:20px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url(../images/header/top_row.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; /* Ensures background image scales properly */
+}
+
+/*
+---------------------------
+Footer Styling
+---------------------------
+*/
+
+footer {
+    padding: 25px 20px;
+    justify-content: space-around;
+}
+
+/* FOOTER TOP LAYOUT (logos + icons) */
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    border-top: 2px solid #284cde;
+    border-bottom: 2px solid #284cde;
+}
+
+/* LEFT: Logo Rotator */
+/* FOOTER LOGO ROTATOR (3 LOGOS)   */
+
+.footer-logo-rotator {
+    position: relative;
+    width: 220px;      /* adjust width based on your logo size */
+    height: 80px;      /* adjust height based on your tallest logo */
+    overflow: hidden;
+}
+
+/* Every logo wrapper (each has its own link) */
+.rotating-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* Default: offline — only visible logos get pointer events */
+    pointer-events: none;
+}
+
+/* Each logo image */
+.rotating-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: auto;
+
+    opacity: 0;             /* start invisible */
+    pointer-events: none;    /* start non-clickable */
+    animation: rotateLogos 12s infinite;
+}
+
+/* LOGO TIMING (3 logos = 12 sec cycle = 4 sec each) */
+.logo1 { animation-delay: 0s; }
+.logo2 { animation-delay: 4s; }
+.logo3 { animation-delay: 8s; }
+
+/* ============================================= */
+/* KEYFRAMES — visible → invisible loop for 3 logos */
+/* ============================================= */
+
+@keyframes rotateLogos {
+    /* Visible & clickable */
+    0%   { opacity: 1; pointer-events: auto; }
+    28%  { opacity: 1; pointer-events: auto; }
+
+    /* Fade out */
+    33%  { opacity: 0; pointer-events: none; }
+
+    /* Hidden for rest of cycle */
+    94%  { opacity: 0; pointer-events: none; }
+
+    /* Fade back in for next cycle */
+    100% { opacity: 1; pointer-events: auto; }
+}
+
+/* RIGHT: Social icons          */
+.footer-social {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-social img {
+    height: 40px;
+    width: auto;
+}
+
+/* BOTTOM FOOTER LINKS          */
+
+.footer-bottom-links {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+.footer-bottom-links a {
+    color: #072893;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.footer-bottom-links a:hover {
+    color: #54960e;   /* same hover color as header links */
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.footer-bottom-links span {
+    margin: 0 6px;
+    color: #072893;
+}
+
+
+
+
+/*
+---------------------------
+Menu Styling
+---------------------------
+*/
+
+.show {
+	display: block;
+    width: 100%; /* ensures that the nav displays at full width when using the javascript navigation menu */
+}
+
+/* header navigation styles */
+.btn-menu {
+	display: block;
+	background-color: #207ab7;
+	border: none;
+	font-size: 1.3rem;
+	color: white;
+	text-transform: uppercase;
+	cursor: pointer;
+    float: right;
+}
+
+nav{
+    /* don't display this element as usual */
+	display:none;
+}
+
+nav ul{
+    list-style-type: none;
+	/* overflow: hidden; */
+    overflow: visible;
+	background-color: #207ab7;
+	color: white;
+    font-weight: bold;
+    margin: 0px 25px 0px 0px;
+    padding: 4px 4px;
+    font-size: 14px;
+  	/*
+	convert the vertical stack 
+	of children block tag LIs into a horizontal
+	flex display!
+	*/
+	/* display:flex; */
+}
+
+nav a{
+    color: white;
+    font-weight: bold;
+	text-decoration:none;
+    margin: 2px 2px;
+    padding: 5px 15px;
+
+	/*cannot resize inline elements easily,
+    so make these act like block tags*/
+    display:inline-block;	
+   
+    /*center align text*/
+    text-align:center;
+    /*adjust the vertical position of text*/
+    line-height:30px;
+}
+
+nav a:hover{
+    color: #fcdd79!important;
+}
+
+/* Mobile default: dropdowns collapsed */
+.dropdown-menu {
+    display: none;
+}
+
+
+
+
+
+
+/*
+---------------------------
+Text Styling
+---------------------------
+*/
+p {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    color: #131e41;
+    line-height: 24px;
+}
+
+h1{
+    color: #284cde;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+h2{
+    color: #417a05;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+h3{
+    color: black;
+    font-size: 14px;
+}
+
+h4, h5, h6{
+    color: black;
+}
+
+.BlueBannerText {
+	background-color: #3366cc;
+	/* font-size : 12pt; */
+	font-weight: bold;
+	color: white;
+	text-decoration : none;  
+	padding:15px;
+    width: 100%;
+}
+
+
+/*
+---------------------------
+Hyperlink Styling
+---------------------------
+*/
+a{
+    color:#337ab7;
+    font-weight:normal;
+    text-decoration: none;
+}
+/*a:hover and a:focus effects*/
+a:hover, a:focus{
+    /* color:#23527c; */
+    font-weight:bold;
+    text-decoration:underline;
+}
+a:active{
+    /*add underline if/when user clicks or taps*/
+    text-decoration:underline;
+}
+
+/* indicate current page on nav menu */
+#current-page{
+    color: #fcdd79;
+}
+
+
+/* courtesy menu - Header Links*/
+.header-links {    
+    position: relative;         /* Absolute Allows placing in header corner */
+    top: -35px;                   /* Adjust up/down */
+    right: 5px;                 /*Adjust left/right */
+    font-size: 11px;
+}
+
+.header-links a {
+    color: #072893;             /* default color */
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.header-links a:hover {
+    color: #54960e;             /* hover color you wanted */
+}
+
+.separator {
+    color: #072893;
+    margin: 0 5px;
+}
+
+
+
+
+/*
+-----------------------------------------------------------------
+Home Page - Announcements / Spotlight / Employment Opportunities
+-----------------------------------------------------------------
+*/
+
+.announcements-spotlight-employment {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.announcements-spotlight-employment article {
+    border-bottom: 2px solid #284cde;
+}
+
+.announcements-spotlight-employment article:last-of-type {
+    border-bottom: none;
+}
+
+
+/*
+---------------------------------
+Executive and Council Gridbox
+Resources - Gridbox
+---------------------------------
+*/
+.two-column-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+
+
+/*
+----------------------------
+Section and Article Styling
+----------------------------
+*/
+section{
+    padding: 2px;
+}
+
+article{
+    padding: 12px;
+    margin:10px;
+    /* flex:1; */
+    text-align: left;
+}
+
+article img {
+    display: block;
+    margin: auto;
+}
+
+
+/* Remove flexbox for this section */
+article.container {
+    display: block;   /* default block layout, text can wrap around floated images */
+}
+
+/* Optional: add spacing for image */
+article.container img {
+    float: left;        /* allows text to wrap to the right */
+    margin: 0 15px 10px 0;  /* spacing around image */
+    max-width: 40%;     /* image won’t take more than 40% of width */
+    height: auto;
+}
+
+/* Make sure boxes are block-level */
+.box {
+    display: block;
+    width: 100%;
+}
+
+article.container img {
+    float: right;
+    margin: 0 0 10px 15px;
+}
+
+
+/*
+----------------------------
+Content with Sidebar menu
+----------------------------
+*/
+
+/* Container for main content + sidebar */
+.content-with-sidebar {
+    display: flex;
+    gap: 20px; /* spacing between main content and sidebar */
+    align-items: flex-start; /* <-- Prevent stretching so sidebar only matches its own height */
+}
+
+/* Main content takes most of the width */
+.content-with-sidebar .main-content {
+    flex: 3; 
+}
+
+/* Sidebar takes less width */
+.content-with-sidebar .submenu {
+    flex: 1;
+    background-color: #072893;
+    padding: 15px;
+    border-left: 1px solid #ccc;
+}
+
+/* Optional: style the list links */
+.content-with-sidebar .submenu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.content-with-sidebar .submenu ul li {
+    margin-bottom: 10px;
+}
+
+.content-with-sidebar .submenu ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.content-with-sidebar .submenu ul li a:hover {
+    color: #fcdd79;
+}
+
+.submenu{width: 100%;}
+
+
+
+
+
+/*
+----------------------------
+List Styling
+----------------------------
+*/
+ul{
+    list-style-type: disc;   
+    list-style-position: outside;
+    margin: 25px;
+    padding: 0px;
+    font-size: 10px; 
+}
+
+ul li{
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+
+
+
+/*
+---------------------------
+Wrapper Class
+---------------------------
+*/
+#wrapper{
+	/*  this will center the page horizontally */
+	margin:auto;
+	padding: 5px 0;
+    align-items: flex-start;
+	/* sticky footer */
+	display: flex;
+	flex-direction: column;
+    max-width: 1400px;
+	min-height: 100vh; /* 100% as tall as the height of the viewport */
+    /* border:  solid 4px; */
+    background-image: linear-gradient(to bottom, white, #ecf6f8);
+    padding:10px;
+}
+
+/* Stretch header, nav, and footer to the width of the wrapper class */
+#wrapper > header,
+#wrapper > nav ul,
+#wrapper > footer {
+    align-self: stretch;
+    width: 100%;
+}
+
+/* ################### */
+/* Responsive YouTube */
+/* ################## */
+/* Make iframe responsive */
+.responsive-video {
+    position: relative;
+    width: 100%;            /* Full width of parent */
+    max-width: 100%;        /* Never exceed parent width */
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;              /* Needed for ratio trick */
+    overflow: hidden;
+    box-sizing: border-box; /* Include padding/margin in width calculations */
+    margin: 0 auto;
+}
+
+.responsive-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    border: 0;
+}
+
+
+
+
+/* ############# */
+/* Media Queries */
+/* ############# */
+
+@media (min-width: 480px){
+    article{
+        flex: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    /* Footer Responsive tweaks */
+    .footer-top {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    article.container img {
+        float: none;
+        display: block;
+        margin: 0 auto 15px auto;
+        max-width: 80%;
+    }
+}
+
+@media (min-width: 650px){
+    .box{
+        flex: 1 1 0;
+        padding: 10px;
+    }
+}
+
+@media (min-width: 750px){
+    .two-column-grid{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+@media (min-width: 755px){
+    nav ul{
+        display: flex;
+        width: 100%;
+    }
+    
+    /* Dropdown Menu Styling       */
+    .dropdown {
+        position: relative;
+    }
+
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: #207ab7;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        top: 100%;
+        left: 0;
+        min-width: 270px;
+        z-index: 9999;
+        border-radius: 0 0 4px 4px;
+    }
+
+    .dropdown-menu li a {
+        display: block;
+        padding: 10px 15px;
+        white-space: nowrap;
+    }
+
+    /* Hover trigger (desktop) */
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    /* Improve contrast on hover */
+    .dropdown-menu li a:hover {
+        background-color: #155a86;
+        color: #fcdd79;
+    }
+}
+
+@media (min-width: 781px) {
+    .header-flags {
+        top: 50px;
+        gap: 10px;
+    }
+
+    .header-flags img {
+        height: 32px;
+    }
+
+    header h1{
+        left: 20%;
+    }
+}
+
+
+@media (min-width: 770px) {
+    .announcements-spotlight-employment {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* remove mobile borders */
+    .announcements-spotlight-employment article {
+        border-bottom: none;
+        border-right: 2px solid #284cde;
+    }
+
+    /* remove right border on last column */
+    .announcements-spotlight-employment article:last-of-type {
+        border-right: none;
+    }
+}
+
+/* Responsive: stack vertically on small screens */
+@media (max-width: 768px) {
+    .content-with-sidebar {
+        flex-direction: column;
+    }
+    .content-with-sidebar .submenu {
+        border-left: none;
+        border-top: 1px solid #ccc;
+    }
+}
+
+
+
+@media (min-width:784px){
+    nav{
+        display: flex;
+        width: 102%;
+    }
+    .btn-menu {
+        display: none;
+    }
+}
+

@@ -1,0 +1,11 @@
+from qgis.core import *
+from qgis.gui import *
+"""Returns the string after the last occurance of a specified string (note: You can use substring with an index of -1 but I didn't know that)
+    <ul>
+      <li> lastSubstring('How are you today?','o') -> day?</li>
+      <li> lastSubstring('How are you today?','a') -> y?</li>
+      <li> lastSubstring('How are you today?','u') -> today</li>
+    </ul>"""
+@qgsfunction(args='auto', group='Custom')
+def lastSubstring(inString, sString, feature, parent):
+   return inString[inString.rindex(sString)+1:]

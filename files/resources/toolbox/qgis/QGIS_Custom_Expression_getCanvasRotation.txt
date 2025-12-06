@@ -1,0 +1,14 @@
+from qgis.core import *
+from qgis.gui import *
+from qgis.utils import iface
+# The above are standard imports from qgis
+@qgsfunction(args='auto', group='Custom') #This section defined where the custom function resides, you can change "custom" to anything and this tool will appear in that group
+def getCanvasRotation(feature, parent):
+    """
+    Returns the rotation value of the map canvas.
+    <h2>Example usage:</h2>
+    <ul>
+      <li>get_CanvasRotation() -> 20</li>
+    </ul>
+    """
+    return (iface.mapCanvas().rotation()) #returns the rotation of the canvas as int good for adjusting lables and symbols based on map rotation
