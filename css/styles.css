@@ -49,7 +49,9 @@ header{
     background-image: url(../images/header/top_row.jpg);
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover; /* Ensures background image scales properly */
+    /* Ensures background image scales properly */
+    /* background-size: cover;  */
+    background-size: 100% 105%;
 }
 
 /*
@@ -695,4 +697,5 @@ Wrapper Class
         display: none;
     }
 }
+
 
